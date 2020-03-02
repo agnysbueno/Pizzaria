@@ -59,10 +59,12 @@ const fazerPrimeiroPedido = (nomeClienteNovo,...pizzasPedidas) => {
     };
     calcularTotal(...pizzasPedidas)
     registros.push(novoCliente)
+    let feedback = `Seu pedido foi registrado, ${nomeClienteNovo}. Volte sempre!`
+    return feedback
 };
 //fazerPrimeiroPedido("Marissa", "Mussarela", "Calabresa"); //OK!
 
-const adicionarPedido = (cliente,...pizzasPedidas) => {
+const adicionarPedido = (nomeCliente,...pizzasPedidas) => {
     novoPedido = {
         pizzas: pizzasPedidas,
         total: 0,
@@ -78,7 +80,13 @@ const adicionarPedido = (cliente,...pizzasPedidas) => {
         }
     };
     calcularTotal(...pizzasPedidas)
-    cliente.pedidos.push(novoPedido)
+    for (let cliente of registros){
+        if(cliente.cliente == nomeCliente){
+            cliente.pedidos.push(novoPedido)
+        }//ARRUMAR!!!!!!!!!!!!!
+    }
+    let feedback = `Seu pedido foi registrado, ${cliente}. Obrigado pela preferência!`
+    return feedback
 };
 //adicionarPedido(registros[0], "Chocolate", "Brócolis"); //OK!
 
@@ -100,7 +108,7 @@ const listarPedidos = (array) => {
 //console.log(listarPedidos(registros)); //OK!
 
 const buscarPedidosPorCliente = (nomeCliente) => {
-    let clientesFiltrados = registros.filter(cliente => cliente.nome.toLowerCase() === nomeCliente.toLowerCase());
+    let clientesFiltrados = registros.filter(cliente => cliente.nome.toLowerCase() == nomeCliente.toLowerCase());
     let resultadoBusca
     if(clientesFiltrados.length > 0){
         resultadoBusca = listarPedidos(clientesFiltrados);

@@ -21,13 +21,15 @@ let cardapio =[
     }
 ];
 
-const adicionarPizzaNova = (nomeDaPizzaNova, categoriaDaPizzaNova, precoDaPizzaNova) => {
+const adicionarPizzaNova = (nomeDaPizzaNova, categoriaDaPizzaNova, precoDaPizzaNova) => {    
     pizzaNova = {
         nome: nomeDaPizzaNova,
         categoria: categoriaDaPizzaNova,
         preco: precoDaPizzaNova
     }
     cardapio.push(pizzaNova)
+    let feedback = `Pizza ${nomeDaPizzaNova} foi adicionada ao cardápio!`
+    return feedback
 };
 //adicionarPizzaNova("portuguesa", "salgada", "20"); //OK!
 
