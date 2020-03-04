@@ -31,7 +31,6 @@ const adicionarPizzaNova = (nomeDaPizzaNova, categoriaDaPizzaNova, precoDaPizzaN
     let feedback = `Pizza ${nomeDaPizzaNova} foi adicionada ao cardápio!`
     return feedback
 };
-//adicionarPizzaNova("portuguesa", "salgada", "20"); //OK!
 
 const listarPizzas = (array) => {
     let conteudo = ""
@@ -44,7 +43,6 @@ const listarPizzas = (array) => {
     }
     return conteudo;
 };
-//console.log(listarPizzas(cardapio)); //OK!
 
 const buscarPizzaPorNome = (nomePizza) => {
     let pizzasEncontradas = cardapio.filter(pizza => pizza.nome.toLowerCase() === nomePizza.toLowerCase())
@@ -56,8 +54,6 @@ const buscarPizzaPorNome = (nomePizza) => {
     }
     return resultadoBusca   
 };
-//console.log(buscarPizzaPorNome ("portuguesa")); //OK!
-//console.log(buscarPizzaPorNome ("mussarela")); //OK!
 
 const buscarPizzasPorCategoria = (categoria) => {
     let pizzasEncontradas = cardapio.filter(pizza => pizza.categoria.toLowerCase() === categoria.toLowerCase())
@@ -69,8 +65,5 @@ const buscarPizzasPorCategoria = (categoria) => {
     }
     return resultadoBusca
 };
-//console.log(buscarPizzasPorCategoria("salgada")) //OK!
-//console.log(buscarPizzasPorCategoria("agridoce")) //OK!
-
 
 module.exports = {cardapio, adicionarPizzaNova, listarPizzas, buscarPizzaPorNome, buscarPizzasPorCategoria}

@@ -1,8 +1,7 @@
 const pizzaModel = require("../model/Pizza");
 const cardapio = pizzaModel.cardapio;
 
-let registros = [
-    {
+let registros = [{
         cliente:"Ryan",
         pedidos:[
             {
@@ -36,12 +35,12 @@ let registros = [
             data: new Date(2020,1,20)
             }
         ]
-    },
+    }
 ];
 
-const fazerPrimeiroPedido = (nomeClienteNovo,...pizzasPedidas) => {
-    let novoCliente = {
-        cliente: nomeClienteNovo,
+const adicionarPedido = (nomeCliente,...pizzasPedidas) => {
+    let novoPedido = {
+        cliente: nomeCliente,
         pedidos: [{
             pizzas: pizzasPedidas,
             total: 0,
@@ -58,41 +57,14 @@ const fazerPrimeiroPedido = (nomeClienteNovo,...pizzasPedidas) => {
         }
     };
     calcularTotal(...pizzasPedidas)
-    registros.push(novoCliente)
-    let feedback = `Seu pedido foi registrado, ${nomeClienteNovo}. Volte sempre!`
+    registros.push(novoPedido)
+    let feedback = `Seu pedido foi registrado, ${nomeCliente}. Volte sempre!`
     return feedback
 };
-//fazerPrimeiroPedido("Marissa", "Mussarela", "Calabresa"); //OK!
-
-const adicionarPedido = (nomeCliente,...pizzasPedidas) => {
-    novoPedido = {
-        pizzas: pizzasPedidas,
-        total: 0,
-        data: new Date()
-    };
-    const calcularTotal = (...pizzasPedidas) => {
-        for(let item of pizzasPedidas){
-            for(let pizza of cardapio){
-                if(pizza.nome == item){
-                    novoPedido.total+= pizza.preco
-                }
-            }
-        }
-    };
-    calcularTotal(...pizzasPedidas)
-    for (let cliente of registros){
-        if(cliente.cliente == nomeCliente){
-            cliente.pedidos.push(novoPedido)
-        }//ARRUMAR!!!!!!!!!!!!!
-    }
-    let feedback = `Seu pedido foi registrado, ${cliente}. Obrigado pela preferência!`
-    return feedback
-};
-//adicionarPedido(registros[0], "Chocolate", "Brócolis"); //OK!
-
-const listarPedidos = (array) => {
+    
+const listarPedidos = (registros) => {
     let conteudo = ""
-    for(let cliente of array){
+    for(let cliente of registros){
         conteudo+=`
         Cliente: ${cliente.cliente} <br>`
         for(let pedido of cliente.pedidos){
@@ -104,20 +76,6 @@ const listarPedidos = (array) => {
         }         
     }
     return conteudo;
-};
-//console.log(listarPedidos(registros)); //OK!
+}
 
-const buscarPedidosPorCliente = (nomeCliente) => {
-    let clientesFiltrados = registros.filter(cliente => cliente.nome.toLowerCase() == nomeCliente.toLowerCase());
-    let resultadoBusca
-    if(clientesFiltrados.length > 0){
-        resultadoBusca = listarPedidos(clientesFiltrados);
-    } else {
-        resultadoBusca = "Não encontramos clientes com esse nome :("
-    }
-    return resultadoBusca
-};
-//console.log(buscarPedidosPorCliente("Seth")) //VALIDAR
-
-
-module.exports = {fazerPrimeiroPedido, adicionarPedido, listarPedidos, buscarPedidosPorCliente}
+module.exports = {adicionarPedido, listarPedidos}
