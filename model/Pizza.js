@@ -1,4 +1,4 @@
-let cardapio =[
+let cardapio = [
     {
         nome: "Mussarela",
         categoria: "Salgada",
